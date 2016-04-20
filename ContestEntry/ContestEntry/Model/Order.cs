@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ContestEntry
+namespace ContestEntry.Model
 {
     using System;
     using System.Collections.Generic;

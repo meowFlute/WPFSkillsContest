@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="ContestEntry.View.CustomerOrdersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ContestEntry.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="800"
+             DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Customers" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Customers}" SelectedValue="{Binding Path=SelectedCustomer, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="FirstName"/>
+                                <Binding Path="LastName"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Grid.Row="1" Grid.Column="0" Content="First Name: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedCustomer.FirstName}" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True"/>
+        <Label Grid.Row="1" Grid.Column="2" Content="Last Name: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding SelectedCustomer.LastName}" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True"/>
+        <Label Grid.Row="1" Grid.Column="4" Content="Email: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="5" Text="{Binding SelectedCustomer.Email}" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True"/>
+        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="2" ItemsSource="{Binding Orders}" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="CustomerId" Binding="{Binding CustomerID}"/>
+                <DataGridTextColumn Header="OrderDate" Binding="{Binding OrderDate}"/>
+                <DataGridTextColumn Header="OrderStatusId" Binding="{Binding OrderStatus}"/>
+                <DataGridTextColumn Header="ItemsTotal" Binding="{Binding ItemsTotal}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Grid.Row="4" Grid.Column="0" Content="Order ID: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="4" Grid.Column="1" Content="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Order Date: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5" Text="{Binding NewOrderDate, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="False"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="Order Total: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="5" Text="{Binding NewOrderTotal, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="False"/>
+        <Label Grid.Row="7" Grid.Column="0" Content="Order Status: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding OrderStatusChoices}" SelectedValue="{Binding SelectedNewOrderStatus, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+        <Button Content="Add" Grid.Row="8" Grid.Column="5" Command="{Binding AddOrderCommand}" Margin="15,0" Width="100" HorizontalAlignment="Right"/>
+        <Button Content="Cancel" Grid.Row="8" Grid.Column="5" Command="{Binding AddOrderCommand}" Margin="0,0,125,0" Width="100" HorizontalAlignment="Right"/>
+    </Grid>
+</UserControl>

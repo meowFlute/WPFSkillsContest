@@ -58,11 +58,31 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.2.0.37222, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.2.0.37222, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.2.0.37226, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -81,31 +101,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ContestEntryDataModel.Context.cs">
+    <Compile Include="Model\ContestEntryDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ContestEntryDataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContestEntryDataModel.cs">
+    <Compile Include="Model\ContestEntryDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ContestEntryDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContestEntryDataModel.Designer.cs">
+    <Compile Include="Model\ContestEntryDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ContestEntryDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Customer.cs">
+    <Compile Include="Model\Customer.cs">
       <DependentUpon>ContestEntryDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Order.cs">
+    <Compile Include="Model\Order.cs">
       <DependentUpon>ContestEntryDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SampleDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SampleDatabaseDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Services\DataAccessService.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\CustomerOrdersView.xaml.cs">
+      <DependentUpon>CustomerOrdersView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -119,6 +145,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\CustomerOrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -138,11 +168,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="ContestEntryDataModel.edmx">
+    <EntityDeploy Include="Model\ContestEntryDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ContestEntryDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ContestEntryDataModel.edmx.diagram">
+    <None Include="Model\ContestEntryDataModel.edmx.diagram">
       <DependentUpon>ContestEntryDataModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -167,21 +197,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ContestEntryDataModel.Context.tt">
+    <Content Include="Model\ContestEntryDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ContestEntryDataModel.edmx</DependentUpon>
       <LastGenOutput>ContestEntryDataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ContestEntryDataModel.tt">
+    <Content Include="Model\ContestEntryDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ContestEntryDataModel.edmx</DependentUpon>
       <LastGenOutput>ContestEntryDataModel.cs</LastGenOutput>
     </Content>
     <Content Include="SampleDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SampleDatabase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>SampleDatabase.mdf</DependentUpon>
     </Content>
   </ItemGroup>
@@ -200,6 +230,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

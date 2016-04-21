@@ -92,7 +92,7 @@ namespace ContestEntry.ViewModel
         }
         public ObservableCollection<string> OrderStatusChoices { get; set; }
         public RelayCommand AddOrderCommand { get; set; }
-        public RelayCommand CancelOrderCommand { get; set; }
+        public RelayCommand<MainWindow> CancelOrderCommand { get; set; }
         #endregion
 
         #region methods
@@ -108,7 +108,7 @@ namespace ContestEntry.ViewModel
             OrderStatusChoices = new ObservableCollection<string>();
 
             AddOrderCommand = new RelayCommand(AddOrder);
-
+            CancelOrderCommand = new RelayCommand<MainWindow>(CancelOrder);
 
             GetCustomers();
             SelectedCustomer = Customers[0];
@@ -130,6 +130,9 @@ namespace ContestEntry.ViewModel
             }
         }
 
+        /// <summary>
+        /// Gets the customer list using the dataAccessService
+        /// </summary>
         void GetCustomerOrders()
         {
             Orders.Clear();
@@ -139,6 +142,9 @@ namespace ContestEntry.ViewModel
             }
         }
 
+        /// <summary>
+        /// Handles adding orders to the database using the dataAccessService
+        /// </summary>
         void AddOrder()
         {
             //fill out the new order before sending it off
@@ -158,6 +164,9 @@ namespace ContestEntry.ViewModel
             GetCustomerOrders();
         }
 
+        /// <summary>
+        /// Initializes the options for the order statuses
+        /// </summary>
         void InitializeStatusChoices()
         {
             OrderStatusChoices.Add("New");
@@ -165,9 +174,13 @@ namespace ContestEntry.ViewModel
             OrderStatusChoices.Add("Delivered");
         }
 
-        void CancelOrder()
+        /// <summary>
+        /// This function just closes a window using relative path bindings to find the window holding the view
+        /// </summary>
+        /// <param name="window">Bound using relative paths to the parent window of the view</param>
+        void CancelOrder(MainWindow window)
         {
-
+            window.Close();
         }
         #endregion
     }

@@ -67,6 +67,6 @@
         <Label Grid.Row="7" Grid.Column="0" Content="Order Status: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <ComboBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding OrderStatusChoices}" SelectedValue="{Binding SelectedNewOrderStatus, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
         <Button Content="Add" Grid.Row="8" Grid.Column="5" Command="{Binding AddOrderCommand}" Margin="15,0" Width="100" HorizontalAlignment="Right"/>
-        <Button Content="Cancel" Grid.Row="8" Grid.Column="5" Command="{Binding AddOrderCommand}" Margin="0,0,125,0" Width="100" HorizontalAlignment="Right"/>
+        <Button Content="Cancel" Grid.Row="8" Grid.Column="5" Command="{Binding CancelOrderCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="0,0,125,0" Width="100" HorizontalAlignment="Right"/>
     </Grid>
 </UserControl>

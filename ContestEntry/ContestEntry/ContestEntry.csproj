@@ -122,7 +122,7 @@
     <Compile Include="Model\Order.cs">
       <DependentUpon>ContestEntryDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SampleDatabaseDataSet.Designer.cs">
+    <Compile Include="Database\SampleDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SampleDatabaseDataSet.xsd</DependentUpon>
@@ -181,15 +181,15 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="SampleDatabaseDataSet.xsc">
+    <None Include="Database\SampleDatabaseDataSet.xsc">
       <DependentUpon>SampleDatabaseDataSet.xsd</DependentUpon>
     </None>
-    <None Include="SampleDatabaseDataSet.xsd">
+    <None Include="Database\SampleDatabaseDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>SampleDatabaseDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="SampleDatabaseDataSet.xss">
+    <None Include="Database\SampleDatabaseDataSet.xss">
       <DependentUpon>SampleDatabaseDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
@@ -197,6 +197,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Database\dbo.Customers.sql" />
+    <Content Include="Database\dbo.Orders.sql" />
     <Content Include="Model\ContestEntryDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ContestEntryDataModel.edmx</DependentUpon>
@@ -207,10 +209,10 @@
       <DependentUpon>ContestEntryDataModel.edmx</DependentUpon>
       <LastGenOutput>ContestEntryDataModel.cs</LastGenOutput>
     </Content>
-    <Content Include="SampleDatabase.mdf">
+    <Content Include="Database\SampleDatabase.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SampleDatabase_log.ldf">
+    <Content Include="Database\SampleDatabase_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>SampleDatabase.mdf</DependentUpon>
     </Content>

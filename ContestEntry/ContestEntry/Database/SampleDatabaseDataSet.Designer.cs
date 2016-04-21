@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace ContestEntry {
+namespace ContestEntry.Database {
     
     
     /// <summary>
